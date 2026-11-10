@@ -40,6 +40,11 @@ npm run typecheck
 npm run check:api
 ```
 
+An isolated local PostgreSQL check submitted 20 simultaneous reservations for one
+capture and observed one inserted row. This exercises the database uniqueness
+constraint only; it does not establish PayPal refund behavior or replace an
+end-to-end sandbox test.
+
 ## GitHub
 
 Repository owner: `Namans12`. Authorized collaborator for pushes: `namans1201`.
