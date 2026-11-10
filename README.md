@@ -45,6 +45,10 @@ capture and observed one inserted row. This exercises the database uniqueness
 constraint only; it does not establish PayPal refund behavior or replace an
 end-to-end sandbox test.
 
+A clean local clone also passed `npm ci` and `npm run build` without an `.env` file.
+Running AI review and sandbox transactions still requires the configured provider
+credentials and a working buyer/seller test setup.
+
 ## GitHub
 
 Repository owner: `Namans12`. Authorized collaborator for pushes: `namans1201`.
