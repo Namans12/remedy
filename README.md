@@ -76,3 +76,19 @@ The order ID and refund action are stored locally in `.data/remedy.sqlite`, whic
 The code includes a PostgreSQL adapter (`DATABASE_URL`), an HTTPS `APP_ORIGIN` check and a shared-password demo gate (`DEMO_PASSWORD`, minimum 16 characters; user name `judge`). It also includes shared fixed-window limits for selected actions. These controls are preliminary, have not been tested against a Render database, and are not production-ready; the shared-password login itself is not rate-limited, and verified webhooks are not implemented. Configure secrets in the hosting platform, never in the repository. Do not deploy until authentication, database persistence, rate limiting and sandbox checkout have been validated.
 
 The existing local `.data/remedy.sqlite` is preserved and is not migrated automatically to PostgreSQL. Hosted and local transactions are separate. AG Studio is not included; its evaluation-only license must be checked before hosted use.
+
+### Render cost and availability planning
+
+[Render's free-tier documentation](https://render.com/docs/free) says Free web
+services spin down after 15 minutes without traffic and may take about one minute
+to start again. Free Postgres expires after 30 days and has no backups. A free
+database created on November 11 would therefore expire around December 11, before
+the event's stated December 21 access target. Use an appropriate paid database or
+another verified durable option if the demo must remain available throughout
+judging. Check the exact service price, credit coverage, workspace usage and
+possible overages in Render before creating anything; credits do not establish a
+guarantee of zero charges. No Render resource has been provisioned by this project.
+
+## License
+
+The source is available under the [MIT License](LICENSE).

@@ -58,7 +58,7 @@ personal account credentials, or private billing information in the recording.
 - Public source: https://github.com/Namans12/remedy
 - Public video: **not recorded or uploaded**.
 - Working demo and judge access: **not yet verified**.
-- Open-source license: **owner's selection pending**.
+- Open-source license: MIT (see LICENSE).
 - PayPal sandbox buyer approval, capture, refund, and duplicate handling: **end-to-end test pending**.
 - Review actual Devpost submission fields, testing instructions, disclosures, and
   judging availability before submitting. No submission has been made.
