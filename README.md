@@ -79,6 +79,20 @@ The code includes a PostgreSQL adapter (`DATABASE_URL`), an HTTPS `APP_ORIGIN` c
 
 The existing local `.data/remedy.sqlite` is preserved and is not migrated automatically to PostgreSQL. Hosted and local transactions are separate. AG Studio is not included; its evaluation-only license must be checked before hosted use.
 
+### AG Studio decision
+
+AG Studio could add interactive reporting over the synthetic policy-preview data,
+but its embedded dashboard and agent framework are broader than the current six-row
+simulation. The hackathon's [AG Grid challenge](https://paypalaihackathon.devpost.com/details/aggrid)
+specifically highlights polished dashboards and the Studio Agent Framework, so a
+basic table alone would not demonstrate that sponsor integration. The supplied key
+states evaluation only, and the published [AG Studio trial terms](https://www.ag-grid.com/studio/licenses/ag-studio/LICENSE.html)
+describe internal evaluation. The organizer promotes a trial, but those sources do
+not explicitly settle whether external judges accessing our hosted demo are within
+this key's terms. We therefore use the current built-in preview and do not claim
+the AG Grid sponsor prize. Obtain written clarification from AG Grid before adding
+the trial library to a hosted judging build; do not publish the trial key.
+
 ### Render cost and availability planning
 
 [Render's free-tier documentation](https://render.com/docs/free) says Free web
