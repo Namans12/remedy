@@ -10,7 +10,8 @@
     "build": "next build",
     "start": "next start",
     "typecheck": "tsc --noEmit",
-    "check:env": "node --env-file=.env scripts/check-env.mjs"
+    "check:env": "node --env-file=.env scripts/check-env.mjs",
+    "check:api": "node scripts/check-api.mjs"
   },
   "dependencies": {
     "next": "16.4.6",

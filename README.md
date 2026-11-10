@@ -36,6 +36,8 @@ manually in the PayPal checkout window; they are not application API credentials
 ```sh
 npm run build
 npm run typecheck
+# With the local development server running, exercise non-transactional API checks:
+npm run check:api
 ```
 
 ## GitHub
