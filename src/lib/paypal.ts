@@ -1,5 +1,6 @@
 import 'server-only';
 import { getPayPalConfig } from './env';
+import { RequestInputError } from './request';
 export class PayPalError extends Error { constructor(public status:number, public details:unknown){super('PayPal request failed')} }
 export async function paypal(path:string, method='GET', body?:unknown, requestId?:string){
  const c=getPayPalConfig();
@@ -23,4 +24,4 @@ export function localOnly(req:Request){
  if(!origin)return true;
  try { const source=new URL(origin); return ['http:','https:'].includes(source.protocol) && source.host.toLowerCase()===host.toLowerCase(); } catch { return false; }
 }
-export function failure(e:unknown){console.error('Request failed',e instanceof PayPalError ? `PayPal ${e.status}` : e instanceof Error ? e.message : 'unknown');return Response.json({error:e instanceof PayPalError ? `PayPal sandbox returned ${e.status}. Check the sandbox account and try again.` : 'Something went wrong. Check the server logs.'},{status:e instanceof PayPalError?502:500})}
+export function failure(e:unknown){if(e instanceof RequestInputError)return Response.json({error:e.message},{status:e.status});console.error('Request failed',e instanceof PayPalError ? `PayPal ${e.status}` : e instanceof Error ? e.message : 'unknown');return Response.json({error:e instanceof PayPalError ? `PayPal sandbox returned ${e.status}. Check the sandbox account and try again.` : 'Something went wrong. Check the server logs.'},{status:e instanceof PayPalError?502:500})}
