@@ -80,7 +80,7 @@ The order ID and refund action are stored locally in `.data/remedy.sqlite`, whic
 
 ## Hosted demo status
 
-The code includes a PostgreSQL adapter (`DATABASE_URL`), an HTTPS `APP_ORIGIN` check and a shared-password demo gate (`DEMO_PASSWORD`, minimum 16 characters; user name `judge`). It also includes shared fixed-window limits for selected actions. These controls are preliminary, have not been tested against a Render database, and are not production-ready; the shared-password login itself is not rate-limited, and verified webhooks are not implemented. Configure secrets in the hosting platform, never in the repository. Do not deploy until authentication, database persistence, rate limiting and sandbox checkout have been validated.
+The code includes a PostgreSQL adapter (`DATABASE_URL`), an HTTPS `APP_ORIGIN` check and a shared-password demo gate (`DEMO_PASSWORD`, minimum 16 characters; user name `judge`). It also includes shared fixed-window limits for selected actions. These controls are preliminary, have not been tested against a Render database, and are not production-ready; failed logins have a workspace-wide rate limit, and verified webhooks are not implemented. Configure secrets in the hosting platform, never in the repository. Do not deploy until authentication, database persistence, rate limiting and sandbox checkout have been validated.
 
 The existing local `.data/remedy.sqlite` is preserved and is not migrated automatically to PostgreSQL. Hosted and local transactions are separate. AG Studio is not included; its evaluation-only license must be checked before hosted use.
 
@@ -109,7 +109,7 @@ The existing local `.data/remedy.sqlite` is preserved and is not migrated automa
 
 These steps are a deployment checklist, not a claim that Render deployment or the
 end-to-end sandbox test has already succeeded. The demo gate is a shared password,
-not individual merchant authentication; its login attempts are not rate-limited.
+not individual merchant authentication. The failed-login limit is shared across the workspace, so sustained abuse can temporarily prevent new login challenges.
 
 ### AG Studio decision
 
