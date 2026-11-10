@@ -19,4 +19,17 @@ for (const [name, path, body, expected] of cases) {
     failed = true;
   }
 }
+try {
+  const response = await fetch(base + '/api/refund', {
+    method: 'POST',
+    headers: {...headers, Origin: 'https://untrusted.example'},
+    body: JSON.stringify({orderId: 'nonexistent', approved: false}),
+  });
+  const ok = response.status === 403;
+  console.log(`${ok ? 'PASS' : 'FAIL'} cross-origin refund: expected 403, got ${response.status}`);
+  if (!ok) failed = true;
+} catch (error) {
+  console.error(`FAIL cross-origin refund: ${error.message}`);
+  failed = true;
+}
 if (failed) process.exitCode = 1;
