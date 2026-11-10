@@ -79,6 +79,33 @@ The code includes a PostgreSQL adapter (`DATABASE_URL`), an HTTPS `APP_ORIGIN` c
 
 The existing local `.data/remedy.sqlite` is preserved and is not migrated automatically to PostgreSQL. Hosted and local transactions are separate. AG Studio is not included; its evaluation-only license must be checked before hosted use.
 
+### Render setup after the sandbox flow is verified
+
+1. Check the costs below and create a Postgres instance that remains available
+   through judging. Select a region and retain its **internal** connection URL.
+2. Create a Node web service from this repository in the same region. Use Node 22
+   or newer, `npm ci && npm run build` for the build command, and `npm start` for
+   the start command. Select the service plan only after reviewing its cost.
+3. In Render's environment settings, set `DATABASE_URL` to the internal Postgres
+   URL, `APP_ORIGIN` to the exact HTTPS service origin with no path, and
+   `DEMO_PASSWORD` to a long random value of at least 16 characters. Use a unique
+   password; `openssl rand -hex 24` is one way to generate one locally. The login
+   user name is `judge`. Do not commit the password or database URL.
+4. First deploy with dummy provider values. Verify that unauthenticated requests
+   receive 401, authenticated access works, and cross-origin writes are rejected.
+   Verify that the database is reachable and state survives a service restart.
+5. Only after those checks, add the sandbox `PAYPAL_CLIENT_ID` and
+   `PAYPAL_CLIENT_SECRET`, plus `GEMINI_API_KEY` and `GEMINI_MODEL`, in Render's
+   environment settings. Restart/redeploy as needed. Never use live PayPal keys.
+6. Test AI review and the entire sandbox checkout, capture, and refund flow using
+   separate test buyer and seller accounts. Verify actual PayPal statuses and the
+   result after refresh. Then supply the URL and shared demo login to judges through
+   the submission's testing instructions, not in the public repository.
+
+These steps are a deployment checklist, not a claim that Render deployment or the
+end-to-end sandbox test has already succeeded. The demo gate is a shared password,
+not individual merchant authentication; its login attempts are not rate-limited.
+
 ### AG Studio decision
 
 AG Studio could add interactive reporting over the synthetic policy-preview data,
