@@ -3,10 +3,10 @@ import { getPayPalConfig } from './env';
 export class PayPalError extends Error { constructor(public status:number, public details:unknown){super('PayPal request failed')} }
 export async function paypal(path:string, method='GET', body?:unknown, requestId?:string){
  const c=getPayPalConfig();
- const tokenResponse=await fetch(`${c.baseUrl}/v1/oauth2/token`,{method:'POST',headers:{Authorization:`Basic ${Buffer.from(`${c.clientId}:${c.clientSecret}`).toString('base64')}`,'Content-Type':'application/x-www-form-urlencoded'},body:'grant_type=client_credentials',cache:'no-store'});
+ const tokenResponse=await fetch(`${c.baseUrl}/v1/oauth2/token`,{method:'POST',headers:{Authorization:`Basic ${Buffer.from(`${c.clientId}:${c.clientSecret}`).toString('base64')}`,'Content-Type':'application/x-www-form-urlencoded'},body:'grant_type=client_credentials',cache:'no-store',signal:AbortSignal.timeout(15000)});
  if(!tokenResponse.ok) throw new PayPalError(tokenResponse.status,'Sandbox authentication failed');
  const {access_token}=await tokenResponse.json();
- const response=await fetch(`${c.baseUrl}${path}`,{method,headers:{Authorization:`Bearer ${access_token}`,'Content-Type':'application/json',Prefer:'return=representation',...(requestId?{'PayPal-Request-Id':requestId}:{})},...(body===undefined?{}:{body:JSON.stringify(body)}),cache:'no-store'});
+ const response=await fetch(`${c.baseUrl}${path}`,{method,headers:{Authorization:`Bearer ${access_token}`,'Content-Type':'application/json',Prefer:'return=representation',...(requestId?{'PayPal-Request-Id':requestId}:{})},...(body===undefined?{}:{body:JSON.stringify(body)}),cache:'no-store',signal:AbortSignal.timeout(15000)});
  const raw=await response.text(); let data; try{data=JSON.parse(raw)}catch{data={message:raw.slice(0,300)}}
  if(!response.ok) throw new PayPalError(response.status,data); return data;
 }
