@@ -52,7 +52,8 @@ sample data and sandbox transactions.
    investigated. Do not claim a completed refund until PayPal confirms it.
 
 Do not show secrets, personal account credentials, or private billing information
-in the recording. A new sandbox order will be needed to record the payment flow.
+in the recording. After a completed refund, use **Start another test payment** to
+create a new sandbox order. The previous transaction remains in the local database.
 
 ## Links and release checks
 
