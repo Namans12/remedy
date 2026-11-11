@@ -14,7 +14,8 @@ recorded or uploaded. Use synthetic data and PayPal sandbox only.
   fabricated AI result: retry or record the error and explain the limitation.
 - Start with a fresh sample payment. After a completed refund, select **Start
   another test payment**. The prior refund remains recorded. Sandbox checkouts
-  may require the buyer to sign in again.
+  may require the buyer to sign in again. If checkout is interrupted before
+  approval, select **Resume checkout** to reopen the same sandbox order.
 
 ## Suggested narration and screen actions
 
