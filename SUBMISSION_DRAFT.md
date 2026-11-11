@@ -1,8 +1,9 @@
 # Remedy submission draft
 
-**Status: draft.** The sandbox checkout, capture, and refund have not yet been
-verified end to end. Hosted judge access and the final video are not ready. Replace
-the placeholders below only after verifying the corresponding result.
+**Status: draft.** A local PayPal sandbox checkout, capture, and $24 partial refund
+were verified end to end. PayPal confirmed the refund as completed, and a repeated
+refund request returned the existing refund. Hosted judge access and the final
+video are not ready.
 
 ## Short description
 
@@ -50,8 +51,8 @@ sample data and sandbox transactions.
 6. Show how a repeated action is prevented and mention how unknown outcomes are
    investigated. Do not claim a completed refund until PayPal confirms it.
 
-Record steps 4–6 only after the sandbox workflow is verified. Do not show secrets,
-personal account credentials, or private billing information in the recording.
+Do not show secrets, personal account credentials, or private billing information
+in the recording. A new sandbox order will be needed to record the payment flow.
 
 ## Links and release checks
 
@@ -59,7 +60,7 @@ personal account credentials, or private billing information in the recording.
 - Public video: **not recorded or uploaded**.
 - Working demo and judge access: **not yet verified**.
 - Open-source license: MIT (see LICENSE).
-- PayPal sandbox buyer approval, capture, refund, and duplicate handling: **end-to-end test pending**.
+- PayPal sandbox buyer approval, capture, completed partial refund, and duplicate handling: **verified locally**. Hosted testing remains pending.
 - Review actual Devpost submission fields, testing instructions, disclosures, and
   judging availability before submitting. No submission has been made.
 
