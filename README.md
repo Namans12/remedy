@@ -140,9 +140,11 @@ another verified durable option if the demo must remain available throughout
 judging. Check the exact service price, credit coverage, workspace usage and
 possible overages in Render before creating anything; credits do not establish a
 guarantee of zero charges. No Render resource has been provisioned by this project.
-As a planning estimate, Render lists its smallest paid Postgres compute at
-approximately $6/month; an always-on Starter web service plus that database has
-been estimated by Render at about $13/month before storage growth and bandwidth.
+On November 11, 2026, the account's Render creation form displayed $6/month for
+the smallest paid Postgres compute and $0.30/month for 1 GB of storage. Together
+with an estimated $7/month Starter web service, the planning total is about
+$13.30/month before storage growth, bandwidth, taxes, or other charges. The form
+defaults to 15 GB of storage, so select 1 GB explicitly if appropriate.
 Actual rates, storage, taxes, usage and promo eligibility must be checked in the
 dashboard. See [Render's cost guide](https://render.com/articles/how-much-does-cloud-application-hosting-cost-for-small-businesses)
 and [database pricing guide](https://render.com/articles/managed-postgresql-pricing-2026).
