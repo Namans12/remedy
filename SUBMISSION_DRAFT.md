@@ -2,8 +2,9 @@
 
 **Status: draft.** A local PayPal sandbox checkout, capture, and $24 partial refund
 were verified end to end. PayPal confirmed the refund as completed, and a repeated
-refund request returned the existing refund. Hosted judge access and the final
-video are not ready.
+refund request returned the existing refund. The hosted demo is live and has
+passed authentication, persistence, Gemini review, and PayPal order creation
+checks. Hosted capture and refund verification and the final video are pending.
 
 ## Short description
 
@@ -33,9 +34,9 @@ The prototype is a single shared demo workspace, not a production merchant syste
 - Next.js, React, TypeScript, and CSS.
 - PayPal Orders and Payments REST APIs, using the sandbox environment only.
 - Gemini API for the message review.
-- SQLite for local state; PostgreSQL adapter for a hosted configuration.
+- SQLite for local state and Render PostgreSQL for hosted state.
 
-AG Studio is not integrated. Render hosting is planned but not yet verified.
+The policy preview is built into Remedy.
 
 ## Demonstration video outline
 
@@ -59,7 +60,8 @@ create a new sandbox order. The previous transaction remains in the local databa
 
 - Public source: https://github.com/Namans12/remedy
 - Public video: **not recorded or uploaded**.
-- Working demo and judge access: **not yet verified**.
+- Hosted demo: https://remedy-oyr0.onrender.com/. The project owner shares the
+  `judge` login password privately through the judging instructions.
 - Open-source license: MIT (see LICENSE).
 - PayPal sandbox buyer approval, capture, completed partial refund, and duplicate handling: **verified locally**. Hosted testing remains pending.
 - Review actual Devpost submission fields, testing instructions, disclosures, and

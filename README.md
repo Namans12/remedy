@@ -82,13 +82,15 @@ describe test accounts and the domestic-payment restriction.
 
 The order ID and refund action are stored locally in `.data/remedy.sqlite`, which is Git-ignored. Each capture can have only one demo refund. A failed or uncertain refund is recorded and is not automatically retried; check PayPal before taking further action. This prototype is not a production service: it has no merchant authentication, verified webhooks, multi-user support, or production-safe deployment. The server limits refunds to a fixed $24 demo amount, but AI review is not a server-side authorization decision. Confirm actual PayPal response statuses rather than assuming success.
 
-## Hosted demo status
+## Hosted sandbox demo
 
-The code includes a PostgreSQL adapter (`DATABASE_URL`), an HTTPS `APP_ORIGIN` check and a shared-password demo gate (`DEMO_PASSWORD`, minimum 16 characters; user name `judge`). It also includes shared fixed-window limits for selected actions. These controls are preliminary, have not been tested against a Render database, and are not production-ready; failed logins have a workspace-wide rate limit, and verified webhooks are not implemented. Configure secrets in the hosting platform, never in the repository. Do not deploy until authentication, database persistence, rate limiting and sandbox checkout have been validated.
+[Open Remedy on Render](https://remedy-oyr0.onrender.com/). Sign in as `judge` using the demo password provided privately by the project owner. The Render deployment has passed checks for authenticated access, rejection of unauthorized and cross-origin requests, persistence across a service restart, Gemini review, and creation of a $72 PayPal sandbox checkout. Hosted buyer approval, capture, and refund still require end-to-end verification.
+
+The demo uses an HTTPS `APP_ORIGIN` check, a shared `DEMO_PASSWORD`, and fixed-window request limits. The web service uses Render's internal PostgreSQL connection, and public database ingress is blocked. The shared login and shared rate limits are intended for a single demo workspace. Verified webhooks are not implemented. Configure credentials in the hosting platform and share the demo login privately.
 
 The existing local `.data/remedy.sqlite` is preserved and is not migrated automatically to PostgreSQL. Hosted and local transactions are separate. AG Studio is not included; its evaluation-only license must be checked before hosted use.
 
-### Render setup after the sandbox flow is verified
+### Render setup
 
 1. Check the costs below and create a Postgres instance that remains available
    through judging. Select a region and retain its **internal** connection URL.
@@ -111,9 +113,8 @@ The existing local `.data/remedy.sqlite` is preserved and is not migrated automa
    result after refresh. Then supply the URL and shared demo login to judges through
    the submission's testing instructions, not in the public repository.
 
-These steps are a deployment checklist, not a claim that Render deployment or the
-end-to-end sandbox test has already succeeded. The demo gate is a shared password,
-not individual merchant authentication. The failed-login limit is shared across the workspace, so sustained abuse can temporarily prevent new login challenges.
+The failed-login limit is shared across the workspace, so sustained abuse can
+temporarily prevent new login challenges.
 
 ### AG Studio decision
 
@@ -129,25 +130,13 @@ this key's terms. We therefore use the current built-in preview and do not claim
 the AG Grid sponsor prize. Obtain written clarification from AG Grid before adding
 the trial library to a hosted judging build; do not publish the trial key.
 
-### Render cost and availability planning
+### Render cost and availability
 
-[Render's free-tier documentation](https://render.com/docs/free) says Free web
-services spin down after 15 minutes without traffic and may take about one minute
-to start again. Free Postgres expires after 30 days and has no backups. A free
-database created on November 11 would therefore expire around December 11, before
-the event's stated December 21 access target. Use an appropriate paid database or
-another verified durable option if the demo must remain available throughout
-judging. Check the exact service price, credit coverage, workspace usage and
-possible overages in Render before creating anything; credits do not establish a
-guarantee of zero charges. No Render resource has been provisioned by this project.
-On November 11, 2026, the account's Render creation form displayed $6/month for
-the smallest paid Postgres compute and $0.30/month for 1 GB of storage. Together
-with an estimated $7/month Starter web service, the planning total is about
-$13.30/month before storage growth, bandwidth, taxes, or other charges. The form
-defaults to 15 GB of storage, so select 1 GB explicitly if appropriate.
-Actual rates, storage, taxes, usage and promo eligibility must be checked in the
-dashboard. See [Render's cost guide](https://render.com/articles/how-much-does-cloud-application-hosting-cost-for-small-businesses)
-and [database pricing guide](https://render.com/articles/managed-postgresql-pricing-2026).
+The Render deployment uses a $7/month Starter web service and paid PostgreSQL
+with 1 GB of storage at $6.30/month. The base estimate is $13.30/month before
+usage charges and taxes. Check actual charges and credit coverage in the Render
+dashboard. Paid hosting keeps the database available through the judging period
+without the [30-day expiration on free databases](https://render.com/docs/free).
 
 ## License
 
