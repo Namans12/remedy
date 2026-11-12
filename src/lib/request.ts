@@ -9,7 +9,17 @@ export async function readJsonObject(req: Request): Promise<Record<string, unkno
   if (!/^application\/json(?:\s*;|$)/i.test(req.headers.get('content-type') ?? '')) {
     throw new RequestInputError('Send a JSON request.', 415);
   }
-  const maxBytes = 20_000;
+  const body = await readUtf8Body(req, 20_000);
+  let value: unknown;
+  try { value = JSON.parse(body); }
+  catch { throw new RequestInputError('Request must contain valid JSON.'); }
+  if (!value || typeof value !== 'object' || Array.isArray(value)) {
+    throw new RequestInputError('Request must be a JSON object.');
+  }
+  return value as Record<string, unknown>;
+}
+
+export async function readUtf8Body(req: Request, maxBytes: number): Promise<string> {
   if (Number(req.headers.get('content-length')) > maxBytes) {
     throw new RequestInputError('Request is too large.', 413);
   }
@@ -30,11 +40,6 @@ export async function readJsonObject(req: Request): Promise<Record<string, unkno
   const bytes = new Uint8Array(size);
   let offset = 0;
   for (const chunk of chunks) { bytes.set(chunk, offset); offset += chunk.byteLength; }
-  let value: unknown;
-  try { value = JSON.parse(new TextDecoder('utf-8', {fatal: true}).decode(bytes)); }
-  catch { throw new RequestInputError('Request must contain valid JSON.'); }
-  if (!value || typeof value !== 'object' || Array.isArray(value)) {
-    throw new RequestInputError('Request must be a JSON object.');
-  }
-  return value as Record<string, unknown>;
+  try { return new TextDecoder('utf-8', {fatal: true}).decode(bytes); }
+  catch { throw new RequestInputError('Request body must be valid UTF-8.'); }
 }

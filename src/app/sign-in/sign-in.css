@@ -1,0 +1,101 @@
+/* Hallmark · v2.0.0 · shape: sign-in form · genre: modern-minimal · theme: Remedy workspace · signature: judge access */
+/* Critique: keep the password field and primary action together at narrow widths. */
+.signIn {
+  display: grid;
+  min-height: 100svh;
+  place-items: center;
+  padding: clamp(16px, 5vw, 40px);
+}
+
+.signInPanel {
+  width: min(100%, 460px);
+  min-width: 0;
+  padding: clamp(24px, 6vw, 44px);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+}
+
+.signInBrand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.signInBrand span {
+  display: grid;
+  width: 34px;
+  aspect-ratio: 1;
+  place-items: center;
+  color: var(--surface);
+  background: var(--blue);
+  border-radius: 9px;
+}
+
+.signIn h1 {
+  margin: 28px 0 8px;
+  overflow-wrap: break-word;
+  text-wrap: balance;
+  font-size: clamp(29px, 5vw, 36px);
+  line-height: 1.12;
+}
+
+.signInIntro,
+.signInHelp,
+.signInSandbox {
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.signInIntro { margin: 0 0 24px; }
+
+.signInForm {
+  display: grid;
+  gap: 8px;
+}
+
+.signInForm label {
+  margin-top: 4px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.signInForm input:not([type=hidden]) {
+  width: 100%;
+  min-height: 46px;
+  padding: 8px 12px;
+  color: var(--ink);
+  background: var(--bg);
+  border: 1px solid var(--muted);
+  border-radius: 8px;
+}
+
+.signInForm .primary { margin-top: 8px; }
+.signInForm .primary:active { transform: translateY(1px); }
+.signInForm input:active { border-color: var(--blue); }
+.signInForm :focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+
+.signInError {
+  margin: 4px 0 0;
+  padding: 8px 12px;
+  color: var(--amber);
+  background: var(--amber-bg);
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.signInHelp,
+.signInSandbox { font-size: 14px; }
+.signInHelp { margin: 16px 0 0; }
+
+.signInSandbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 24px 0 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}

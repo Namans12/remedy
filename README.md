@@ -3,6 +3,7 @@
 PayPal AI Hackathon sandbox prototype for reviewing customer cases and testing a partial refund.
 
 For the next engineering pass, see the [Claude handoff](CLAUDE_HANDOFF.md).
+For demo production, use the [Remotion brief](REMOTION_DEMO_BRIEF.md).
 
 ## Local setup
 
@@ -88,7 +89,7 @@ The order ID and refund action are stored locally in `.data/remedy.sqlite`, whic
 
 [Open Remedy on Render](https://remedy-oyr0.onrender.com/). Sign in as `judge` using the demo password provided privately by the project owner. The Render deployment passed checks for authenticated access, rejection of unauthorized and cross-origin requests, persistence across a service restart, and Gemini review. The hosted PayPal sandbox flow was verified from buyer approval through the $72 capture and $24 partial refund. A repeated refund request returned the original refund, and a fresh state request retained the completed status.
 
-The demo uses an HTTPS `APP_ORIGIN` check, a shared `DEMO_PASSWORD`, and fixed-window request limits. The web service uses Render's internal PostgreSQL connection, and public database ingress is blocked. The shared login and shared rate limits are intended for a single demo workspace. Verified webhooks are not implemented. Configure credentials in the hosting platform and share the demo login privately.
+The demo uses an HTTPS `APP_ORIGIN` check, a shared `DEMO_PASSWORD`, and fixed-window request limits. The sign-in page prefills the judge username and starts an eight-hour browser session. Existing API clients can continue sending Basic authentication. The web service uses Render's internal PostgreSQL connection, and public database ingress is blocked. The shared login and shared rate limits are intended for a single demo workspace. Verified webhooks are not implemented. Configure credentials in the hosting platform and share the demo login privately.
 
 The existing local `.data/remedy.sqlite` is preserved and is not migrated automatically to PostgreSQL. Hosted and local transactions are separate. AG Studio is not included; its evaluation-only license must be checked before hosted use.
 
@@ -104,8 +105,9 @@ The existing local `.data/remedy.sqlite` is preserved and is not migrated automa
    `DEMO_PASSWORD` to a long random value of at least 16 characters. Use a unique
    password; `openssl rand -hex 24` is one way to generate one locally. The login
    user name is `judge`. Do not commit the password or database URL.
-4. First deploy with dummy provider values. Verify that unauthenticated requests
-   receive 401, authenticated access works, and cross-origin writes are rejected.
+4. First deploy with dummy provider values. Verify that unauthenticated page
+   requests redirect to sign-in, unauthenticated API requests receive 401,
+   authenticated access works, and cross-origin writes are rejected.
    Verify that the database is reachable and state survives a service restart.
 5. Only after those checks, add the sandbox `PAYPAL_CLIENT_ID` and
    `PAYPAL_CLIENT_SECRET`, plus `GEMINI_API_KEY` and `GEMINI_MODEL`, in Render's
