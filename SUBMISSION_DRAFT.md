@@ -1,9 +1,13 @@
 # Remedy submission draft
 
-**Status: draft.** The hosted demo passed authentication, persistence, and Gemini
-review checks. PayPal confirmed the $72 sandbox capture and the $24 partial
-refund. A repeated refund request returned the existing refund, and a fresh
-state request retained the completed status. The final video is pending.
+**Status: draft; the owner handles the Devpost submission and the public upload.**
+The hosted demo passed authentication, persistence, and Gemini review checks.
+PayPal confirmed the $72 sandbox capture and the $24 partial refund on Render, and
+again locally on 2026-11-13 (revision `61aa86f` plus the then-uncommitted UI polish):
+buyer approval, capture, a `COMPLETED` refund, a repeated refund request returning
+the original refund (`duplicate: true`), and the completed status persisting after a
+reload. A local demo video has been produced (see `DEMO_RECORDING.md`); it has not
+been uploaded.
 
 ## Short description
 
@@ -16,7 +20,9 @@ A small merchant receiving a complaint has to connect the customer's words to an
 order and decide how to respond. Remedy brings a sample customer message, an AI
 review, and the payment status into one workspace. The AI extracts a short quote
 from the message and suggests a next step. The server checks that the quote appears
-in the message; it does not independently verify damage or the customer's claim.
+word for word in the message, so the merchant can see which words the suggestion is
+based on. It does not verify that the recommendation is correct, that anything is
+damaged, or the customer's claim.
 
 The demo models a $72 order containing three $24 mugs. A merchant can create a
 PayPal sandbox order and, after buyer approval and capture, explicitly approve a
@@ -58,9 +64,14 @@ create a new sandbox order. The previous transaction remains in the database.
 ## Links and release checks
 
 - Public source: https://github.com/Namans12/remedy
-- Public video: **not recorded or uploaded**.
+- Public video: **recorded locally, not yet uploaded**. The owner uploads it as
+  Public and pastes the watch URL into Devpost.
 - Hosted demo: https://remedy-oyr0.onrender.com/. The project owner shares the
-  `judge` login password privately through the judging instructions.
+  `judge` login password privately through the judging instructions; do not put it
+  in the public project text. After signing in, the "How to try Remedy" panel on the
+  Resolution desk lists the steps in order. The shared demo may already show a
+  completed sample case; judges can select **Start another test payment** for a fresh
+  sandbox run, which needs the sandbox buyer account from the testing instructions.
 - Open-source license: MIT (see LICENSE).
 - PayPal sandbox buyer approval, capture, completed partial refund, and duplicate handling: **verified locally and on Render**.
 - Review actual Devpost submission fields, testing instructions, disclosures, and

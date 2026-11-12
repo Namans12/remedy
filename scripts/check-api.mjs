@@ -3,7 +3,7 @@ const base = 'http://127.0.0.1:3000';
 const headers = {Origin: base, 'Content-Type': 'application/json'};
 const cases = [
   ['unknown capture', '/api/capture', JSON.stringify({orderId: 'nonexistent'}), 400],
-  ['unapproved refund', '/api/refund', JSON.stringify({orderId: 'nonexistent', approved: false}), 400],
+  ['unknown-order refund (does not test the approval flag)', '/api/refund', JSON.stringify({orderId: 'nonexistent', approved: false}), 400],
   ['malformed JSON', '/api/analyze', '{', 400],
   ['oversized JSON', '/api/analyze', JSON.stringify({message: 'x'.repeat(21000)}), 413],
 ];

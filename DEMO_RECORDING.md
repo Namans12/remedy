@@ -30,6 +30,13 @@ recorded or uploaded. Use synthetic data and PayPal sandbox only.
 | 2:35–2:45 | Show the repository or closing screen. | “Remedy is a sandbox prototype built with PayPal APIs, AI, and a merchant review workflow.” |
 
 Use cuts to remove waiting and password entry while preserving the real sequence.
+
+A finished edit exists outside this repository (Remotion project, narration script,
+cutting and capture scripts, and `Remedy-Demo.mp4`). Its footage came from the real
+app against the PayPal sandbox; the buyer's PayPal sign-in, funding and address
+screens were deliberately left out and the edit says so on screen. Narration uses
+the macOS "Samantha" synthetic voice and can be replaced with the owner's own
+recording.
 Capture and refund were verified locally and on Render. Record a fresh sandbox
 checkout if you want to show the full buyer flow.
 

@@ -28,7 +28,7 @@ needs a manual check.
 
 ## Run locally
 
-Use Node.js 22 or newer. Read [AGENTS.md](AGENTS.md) and the relevant bundled
+Use Node.js 22.13 or newer. Read [AGENTS.md](AGENTS.md) and the relevant bundled
 Next.js guides under `node_modules/next/dist/docs/` before editing. On a fresh
 checkout run `npm ci` and copy `.env.example` to `.env` if no local file exists.
 Reuse the configured sandbox and Gemini credentials when available. See the
