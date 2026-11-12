@@ -2,6 +2,8 @@
 
 PayPal AI Hackathon sandbox prototype for reviewing customer cases and testing a partial refund.
 
+For the next engineering pass, see the [Claude handoff](CLAUDE_HANDOFF.md).
+
 ## Local setup
 
 Requires Node.js 22 or newer.

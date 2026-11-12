@@ -1,5 +1,5 @@
 import { consumeLimit, getOrder } from '@/lib/store';
-import { localOnly, paypal, failure } from '@/lib/paypal';
+import { localOnly, fetchOrder, isOrderGone, orderGone, failure } from '@/lib/paypal';
 import { readJsonObject } from '@/lib/request';
 
 export async function POST(req: Request) {
@@ -9,7 +9,8 @@ export async function POST(req: Request) {
   const {orderId} = await readJsonObject(req);
   const stored = typeof orderId === 'string' ? await getOrder(orderId) : undefined;
   if (!stored || stored.capture_id) return Response.json({error:'An uncaptured demo order is required.'},{status:400});
-  const order = await paypal(`/v2/checkout/orders/${encodeURIComponent(stored.id)}`);
+  const order = await fetchOrder(stored.id);
+  if (isOrderGone(order)) return orderGone();
   if (order.status === 'APPROVED' || order.status === 'COMPLETED') return Response.json({error:'This order has already been approved. Select Check or complete payment.'},{status:409});
   const approval = order.links?.find((link: {rel:string}) => link.rel === 'payer-action' || link.rel === 'approve')?.href;
   if (!approval || !['CREATED','PAYER_ACTION_REQUIRED'].includes(order.status)) return Response.json({error:'PayPal cannot resume this checkout. Create a new test payment.'},{status:409});

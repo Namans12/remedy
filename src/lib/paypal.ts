@@ -24,4 +24,10 @@ export function localOnly(req:Request){
  if(!origin)return true;
  try { const source=new URL(origin); return ['http:','https:'].includes(source.protocol) && source.host.toLowerCase()===host.toLowerCase(); } catch { return false; }
 }
-export function failure(e:unknown){if(e instanceof RequestInputError)return Response.json({error:e.message},{status:e.status});console.error('Request failed',e instanceof PayPalError ? `PayPal ${e.status}` : e instanceof Error ? e.message : 'unknown');return Response.json({error:e instanceof PayPalError ? `PayPal sandbox returned ${e.status}. Check the sandbox account and try again.` : 'Something went wrong. Check the server logs.'},{status:e instanceof PayPalError?502:500})}
+// A 404 for the order itself is the only signal treated as "PayPal no longer knows this order".
+// Timeouts, 5xx and auth errors stay uncertain so the stored order is preserved and can be rechecked.
+export async function fetchOrder(id:string){try{return await paypal(`/v2/checkout/orders/${encodeURIComponent(id)}`)}catch(e){if(e instanceof PayPalError&&e.status===404)return null;throw e}}
+export const isOrderGone=(order:{status?:string}|null)=>!order||order.status==='VOIDED';
+export const orderGone=()=>Response.json({error:'PayPal no longer recognizes this sandbox order. Start a new test payment.',code:'ORDER_UNAVAILABLE'},{status:410});
+const isTimeout=(e:unknown)=>e instanceof Error&&(e.name==='TimeoutError'||e.name==='AbortError');
+export function failure(e:unknown){if(e instanceof RequestInputError)return Response.json({error:e.message},{status:e.status});if(isTimeout(e))return Response.json({error:'PayPal did not respond in time, so the outcome is unconfirmed. Check the status again before retrying.'},{status:504});console.error('Request failed',e instanceof PayPalError ? `PayPal ${e.status}` : e instanceof Error ? e.message : 'unknown');return Response.json({error:e instanceof PayPalError ? `PayPal sandbox returned ${e.status}. Check the sandbox account and try again.` : 'Something went wrong. Check the server logs.'},{status:e instanceof PayPalError?502:500})}
