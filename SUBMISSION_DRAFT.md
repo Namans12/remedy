@@ -1,10 +1,9 @@
 # Remedy submission draft
 
-**Status: draft.** A local PayPal sandbox checkout, capture, and $24 partial refund
-were verified end to end. PayPal confirmed the refund as completed, and a repeated
-refund request returned the existing refund. The hosted demo is live and has
-passed authentication, persistence, Gemini review, and PayPal order creation
-checks. Hosted capture and refund verification and the final video are pending.
+**Status: draft.** The hosted demo passed authentication, persistence, and Gemini
+review checks. PayPal confirmed the $72 sandbox capture and the $24 partial
+refund. A repeated refund request returned the existing refund, and a fresh
+state request retained the completed status. The final video is pending.
 
 ## Short description
 
@@ -54,7 +53,7 @@ sample data and sandbox transactions.
 
 Do not show secrets, personal account credentials, or private billing information
 in the recording. After a completed refund, use **Start another test payment** to
-create a new sandbox order. The previous transaction remains in the local database.
+create a new sandbox order. The previous transaction remains in the database.
 
 ## Links and release checks
 
@@ -63,7 +62,7 @@ create a new sandbox order. The previous transaction remains in the local databa
 - Hosted demo: https://remedy-oyr0.onrender.com/. The project owner shares the
   `judge` login password privately through the judging instructions.
 - Open-source license: MIT (see LICENSE).
-- PayPal sandbox buyer approval, capture, completed partial refund, and duplicate handling: **verified locally**. Hosted testing remains pending.
+- PayPal sandbox buyer approval, capture, completed partial refund, and duplicate handling: **verified locally and on Render**.
 - Review actual Devpost submission fields, testing instructions, disclosures, and
   judging availability before submitting. No submission has been made.
 

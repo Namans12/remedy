@@ -29,9 +29,9 @@ recorded or uploaded. Use synthetic data and PayPal sandbox only.
 | 2:15–2:35 | Show **Refund recorded** and the payment timeline. | “The application records the refund attempt and prevents a second refund for this capture. If an outcome is uncertain, it requires reconciliation rather than blindly retrying.” |
 | 2:35–2:45 | Show the repository or closing screen. | “Remedy is a sandbox prototype built with PayPal APIs, AI, and a merchant review workflow.” |
 
-Use cuts to remove waiting and password entry; preserve the real sequence and do
-not imply a step succeeded if it did not. Capture and refund were verified locally;
-hosted behavior must be tested separately before it is represented as working.
+Use cuts to remove waiting and password entry while preserving the real sequence.
+Capture and refund were verified locally and on Render. Record a fresh sandbox
+checkout if you want to show the full buyer flow.
 
 ## Before publishing
 

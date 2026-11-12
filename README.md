@@ -84,7 +84,7 @@ The order ID and refund action are stored locally in `.data/remedy.sqlite`, whic
 
 ## Hosted sandbox demo
 
-[Open Remedy on Render](https://remedy-oyr0.onrender.com/). Sign in as `judge` using the demo password provided privately by the project owner. The Render deployment has passed checks for authenticated access, rejection of unauthorized and cross-origin requests, persistence across a service restart, Gemini review, and creation of a $72 PayPal sandbox checkout. Hosted buyer approval, capture, and refund still require end-to-end verification.
+[Open Remedy on Render](https://remedy-oyr0.onrender.com/). Sign in as `judge` using the demo password provided privately by the project owner. The Render deployment passed checks for authenticated access, rejection of unauthorized and cross-origin requests, persistence across a service restart, and Gemini review. The hosted PayPal sandbox flow was verified from buyer approval through the $72 capture and $24 partial refund. A repeated refund request returned the original refund, and a fresh state request retained the completed status.
 
 The demo uses an HTTPS `APP_ORIGIN` check, a shared `DEMO_PASSWORD`, and fixed-window request limits. The web service uses Render's internal PostgreSQL connection, and public database ingress is blocked. The shared login and shared rate limits are intended for a single demo workspace. Verified webhooks are not implemented. Configure credentials in the hosting platform and share the demo login privately.
 
