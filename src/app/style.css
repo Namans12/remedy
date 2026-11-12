@@ -23,3 +23,110 @@ blockquote{font-size:14px;line-height:1.6}.recommendation{font-size:14px;line-he
 .reviewPill,.eligiblePill{white-space:nowrap;display:inline-block}
 @media(max-width:600px){.panel{padding:18px}.payment{padding:18px}.policyPanel{padding:20px}.mainHead{align-items:flex-start;gap:12px}.demoBadge{white-space:nowrap}th,td{padding:14px 8px}.paymentControls{gap:12px 20px}.caseHeading{flex-direction:column;align-items:flex-start;gap:12px}.ruleLine{flex-direction:column;gap:4px}.actionRow .primary,.actionRow .secondary{flex:1 1 100%}}
 .paymentIcon{flex:none}
+
+/* Shared visual language: quiet surfaces, precise controls, decorative stroke icons. */
+.icon{display:inline-block;flex:none;vertical-align:middle;width:18px;height:18px}
+button{transition:border-color .15s ease,box-shadow .15s ease;touch-action:manipulation}
+.primary,.secondary,.linkButton,.nav{display:inline-flex;align-items:center;justify-content:center;gap:8px;line-height:1.4}
+.primary,.secondary,.linkButton{min-height:44px;border-radius:8px;padding:10px 15px;font-size:13px}
+.primary{border:1px solid var(--blue);box-shadow:0 1px 2px #29352e14}
+.primary:hover:not(:disabled):not([aria-disabled=true]){border-color:#285a49;box-shadow:0 2px 5px #29352e1a}
+.secondary{border-color:#ced4c9;box-shadow:0 1px 2px #29352e08}
+.secondary:hover:not(:disabled){border-color:#a5b6a9;background:#f0f4ed}
+.linkButton{padding-inline:8px;color:var(--blue);text-decoration-thickness:1px}
+button:active:not(:disabled):not([aria-disabled=true]){transform:translateY(1px);box-shadow:none}
+button[aria-disabled=true]:active{transform:none}
+button:disabled,.primary[aria-disabled=true]{opacity:1;background:#e8eae3;border-color:#d7dbd1;color:#626a62;box-shadow:none;cursor:not-allowed}
+.nav{justify-content:flex-start;min-height:44px;gap:10px;border:1px solid transparent;border-radius:8px}
+.nav:hover{background:#eeeee6;color:var(--ink)}
+.nav.active{background:var(--blue-soft);border-color:#d6e2d7;color:var(--blue)}
+.nav+.nav{margin-top:5px}
+.topbar{box-shadow:0 1px 4px #29352e04}
+.sandbox,.demoBadge,.caseStatus,.reviewPill,.eligiblePill{display:inline-flex;align-items:center;gap:6px;line-height:1.35;font-weight:600;border-radius:999px}
+.sandbox{background:var(--bg);font-size:12px}
+.sandbox .icon,.caseStatus .icon,.reviewPill .icon,.eligiblePill .icon{width:16px;height:16px}
+.caseStatus::before{content:none}
+.main{padding-top:36px}
+h1{font-size:30px;letter-spacing:-.9px;line-height:1.2}
+h2{font-size:16px;letter-spacing:-.25px;line-height:1.35}
+.mainHead{margin-bottom:32px}
+.caseName{font-size:18px;letter-spacing:-.25px;line-height:1.4}
+.caseHeading{gap:16px;margin-bottom:18px}
+.panel,.payment,.policyPanel{border-radius:12px;box-shadow:0 2px 6px #29352e04,0 1px 2px #29352e03}
+.workgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.panel{padding:24px;min-width:0}
+.panelHead{gap:12px;margin-bottom:24px}
+.number{display:grid;place-items:center;width:28px;height:28px;flex:none;border:1px solid var(--line);border-radius:8px;background:var(--bg);font-variant-numeric:tabular-nums}
+textarea{min-height:166px;border-color:#ced4c9;border-radius:8px;background:#fbfaf6;font-size:14px;line-height:1.65;transition:border-color .15s ease}
+textarea:hover{border-color:#a5b6a9}
+textarea:focus{background:var(--surface)}
+.evidenceHint{margin-top:9px;margin-bottom:20px}
+.disclaimer{margin-bottom:0;max-width:340px}
+.empty{min-height:245px;height:auto;padding:16px 0}
+.emptyIcon{background:var(--blue-soft);border:1px solid #d6e2d7;border-radius:14px;width:48px;height:48px;box-shadow:0 3px 0 #f3f5ee}
+.emptyIcon .icon{width:20px;height:20px}
+.empty h3{font-size:16px;margin-top:20px;letter-spacing:-.2px}
+.empty p{margin-top:6px;max-width:265px;line-height:1.65;font-size:13px}
+.reviewLabel{margin-top:22px;font-size:12px}
+.reviewLabel:first-of-type{margin-top:0}
+blockquote{padding:14px 16px;border-left:3px solid #87a894;border-radius:0 8px 8px 0;background:#f5f4ed;overflow-wrap:anywhere}
+.recommendation{padding:14px 16px;margin:0 0 18px;border:1px solid #d6e2d7;background:#f0f5ee;border-radius:8px;overflow-wrap:anywhere}
+.ruleLine{line-height:1.5}
+.warning,.notice{display:flex;align-items:flex-start;gap:10px;line-height:1.6}
+.warning{padding:12px;background:var(--amber-bg);border-radius:8px}
+.warning .icon,.notice .icon{margin-top:1px}
+.notice{border:1px solid #d6e2d7;border-radius:8px}
+.payment{margin-top:18px;padding:24px}
+.paymentCopy{align-items:flex-start}
+.paymentCopy h2{margin-bottom:5px}
+.paymentIcon{width:40px;height:40px;border:1px solid #d6e2d7;border-radius:10px}
+.timeline{gap:16px;padding-block:22px;margin-top:22px}
+.timeline li{align-items:flex-start;line-height:1.4}
+.timeline li>span{flex:none;width:30px;height:30px;background:var(--bg);border-color:#d1d6cb;font-weight:600}
+.timeline li.done>span{background:var(--blue);border-color:var(--blue);color:var(--surface)}
+.timeline li.current>span{background:var(--surface);border:2px solid var(--blue);color:var(--blue);box-shadow:0 0 0 3px var(--blue-soft)}
+.timeline li div{padding-top:1px;min-width:0}
+.nextStep{border:1px solid #e9e8df;padding:14px 16px;border-radius:8px}
+.paymentControls{gap:20px 28px}
+.paymentStatus{line-height:1.4;max-width:100%}
+.paymentStatus strong{font-size:13px}
+.paymentActions{gap:8px;min-width:0}
+.prerequisite{line-height:1.6}
+.ids{padding-top:14px;border-top:1px solid var(--line);line-height:1.6}
+.policyIntro{gap:24px}
+.threshold div{background:#fbfaf6;border-color:#ced4c9;border-radius:8px}
+.threshold input{min-height:44px;font-weight:600;font-variant-numeric:tabular-nums}
+.threshold input:focus-visible{outline:0} /* The enclosing field displays the full 3px focus ring. */
+.threshold div:has(input:focus-visible){outline:3px solid var(--blue);outline-offset:3px}
+.policySummary{margin:28px 0 12px;gap:54px;background:#f8f8f2;border:1px solid var(--line);border-radius:10px;padding:22px}
+.policySummary strong{font-variant-numeric:tabular-nums;letter-spacing:-.7px}
+.tableWrap{overflow:visible}
+table{table-layout:fixed}
+th:first-child{width:35%}th:nth-child(2){width:25%}th:nth-child(3){width:40%}
+th,td{line-height:1.5;padding:17px 10px;overflow-wrap:anywhere}
+th{padding-block:14px}
+tbody tr:last-child td{border-bottom:0}
+.reviewPill,.eligiblePill{border:1px solid transparent;padding:6px 9px}
+.policyNote{border-top:1px solid var(--line);padding-top:18px;line-height:1.6}
+footer{line-height:1.5}
+.spinner{animation:remedy-spin .9s linear infinite}
+@keyframes remedy-spin{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){button,textarea{transition:none}.spinner{animation:none}button:active:not(:disabled):not([aria-disabled=true]){transform:none}}
+@media(max-width:1050px) and (min-width:901px){.main{padding-inline:28px}.sidebar{width:200px}}
+@media(max-width:900px){.workgrid{grid-template-columns:1fr}.panel{min-height:0}.policyIntro{flex-wrap:wrap}}
+@media(max-width:600px){
+ .main{padding:26px 16px 24px}.mainHead{flex-wrap:wrap;gap:14px;margin-bottom:26px}.mainHead h1{font-size:28px}
+ .demoBadge{padding:5px 9px}.breadcrumb{margin-bottom:12px}
+ .mobileNav{gap:6px}.mobileNav .nav{justify-content:center;padding:10px 8px;font-size:12px;gap:7px}.mobileNav .nav+.nav{margin-top:0}
+ .panel,.payment,.policyPanel{padding:20px}.workgrid{gap:16px}
+ .caseHeading{gap:12px}.caseName{font-size:17px}.empty{min-height:225px}
+ .timeline{gap:20px;padding-block:22px}.paymentCopy{gap:12px}
+ .paymentActions{flex-direction:column;align-items:stretch;gap:10px}.paymentActions button{width:100%}
+ .policySummary{padding:18px 14px;gap:22px;display:grid;grid-template-columns:1fr 1fr}.policySummary div:last-child{grid-column:1/-1}
+ .policySummary strong{font-size:24px}.policyPanel{padding:18px}
+ th,td{padding:14px 5px;font-size:12px}th:first-child{width:31%}th:nth-child(2){width:23%}th:nth-child(3){width:46%}
+ .reviewPill,.eligiblePill{white-space:normal;gap:5px;padding:5px 6px;font-size:12px;line-height:1.5}
+ .reviewPill .icon,.eligiblePill .icon{width:16px;height:16px}
+}
+/* Separators remain readable alongside the surrounding metadata. */
+.breadcrumb span,.caseMeta span{color:var(--muted)}
